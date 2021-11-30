@@ -2,7 +2,7 @@ import type { NextPage } from 'next'
 
 
 import styles from './home.module.scss'
-import Header from './../components/Header/index';
+
 
 const Home: NextPage = () => {
   return (
