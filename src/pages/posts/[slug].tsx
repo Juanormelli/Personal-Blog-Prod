@@ -25,7 +25,7 @@ export default function Posts({post}: PostsProps){
     return(
         <>
             <Head>
-                <title>{post.title} | IgNews</title>
+                <title>{post.title} | TECH POSTS</title>
 
             </Head>
 

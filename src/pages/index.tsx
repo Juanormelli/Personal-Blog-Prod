@@ -1,21 +1,30 @@
 import type { NextPage } from 'next'
+import  Head  from 'next/head'
 
-import image from "next/image"
+
+import React from 'react'
 import styles from './home.module.scss'
 
 
 const Home: NextPage = () => {
   return (
     <>
+     <Head>
+        <title>Home | TECH POSTS</title>
+      </Head>
+
    
     
     <main className={styles.contentContainer}> 
         <section className={styles.hero}>
-          <span></span>
-          <h1>Boost Your Future 🚀</h1>
+          <span>TECH POSTS <br/> <p>Seu blog sobre tecnologia e inovação!</p></span>
+          <h1>Esta pronto para embarcar? 🚀</h1>
           <p>
-            
+            Conteúdo totalmente voltado para tecnologia!
+          <br/>
+          
           </p>
+
         
         </section>
 
