@@ -7,7 +7,7 @@ import Header from './../components/Header/index';
 const Home: NextPage = () => {
   return (
     <>
-    <Header/>
+   
     
     <main className={styles.contentContainer}> 
         <section className={styles.hero}>
