@@ -18,17 +18,17 @@ const Home: NextPage = () => {
     <main className={styles.contentContainer}> 
         <section className={styles.hero}>
           <span>TECH POSTS <br/> <p>Seu blog sobre tecnologia e inovação!</p></span>
-          <h1>Esta pronto para embarcar? 🚀</h1>
+          <h1>Está pronto para embarcar? 🚀</h1>
           <p>
             Conteúdo totalmente voltado para tecnologia!
           <br/>
           
           </p>
-
+      
         
         </section>
-
         <img src="/images/Saly-1.svg"alt="Rocket" />
+       
         
       </main>
     
