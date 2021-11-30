@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
 
-
+import image from "next/image"
 import styles from './home.module.scss'
 
 
