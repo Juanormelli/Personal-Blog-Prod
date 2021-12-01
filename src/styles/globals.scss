@@ -9,7 +9,9 @@
   --white:#FFFFFFFF;
 
   --gray-100: #E1E1E6;
+  --gray-200: #BDBDBD;
   --gray-300: #A8A8B3;
+  --gray-350: #626262;
   --gray-650: #323238;
   --gray-700: #29292e;
   --gray-750: #1f2729;
@@ -17,7 +19,8 @@
 
   --cyan-500: #61dafb;
   --yellow-500:#eba417;
-  --green-500:#0BEE2F
+  --green-500:#0BEE2F;
+  --green-600:#33CC95;
 
 
 
@@ -55,4 +58,32 @@ button{
 a{
   color: inherit;
   text-decoration: none;
+}
+
+
+.react-modal-overlay{
+  background: rgba(0,0,0,0.5);
+
+
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left:0;
+
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.react-modal-content{
+  width: 100%;
+  max-width:520px;
+  background: var(--gray-700);
+  padding: 3rem ;
+  position: relative;
+
+  border-radius: 0.70rem;
 }

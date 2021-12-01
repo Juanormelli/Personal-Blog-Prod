@@ -5,10 +5,21 @@ import styles from "./styles.module.scss";
 
 import { useRouter } from "next/router";
 import { ActiveLink } from "../ActiveLink";
+import { useState } from "react";
 
-export default function Header(){
+
+interface HeaderProps{ 
+    onOpenLoginModal: () => void;
+}
+
+export default function Header(props: HeaderProps){
+    
+
+
+
+
     return (
-<header className={styles.headerContainer}>
+        <header className={styles.headerContainer}>
             <div className={styles.headerContent}> 
                 <img src="/images/logo.svg" alt="Logo" />
                 <nav>
@@ -20,7 +31,7 @@ export default function Header(){
                     </ActiveLink>
                     
                 </nav>
-
+                <button onClick={props.onOpenLoginModal}>Login</button>
                 
                 
             </div>
