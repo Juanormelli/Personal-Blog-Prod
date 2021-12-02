@@ -1,7 +1,7 @@
 
 import Modal from "react-modal"
 import { useState } from 'react';
-import { signIn } from 'next-auth/client'
+import { signIn, useSession } from 'next-auth/client'
 
 import style from "../Modal/styles.module.scss"
 
@@ -23,15 +23,28 @@ export default function ModalLogin(props:ModalProps) {
         setPassword("")
         setEmail("")
     }
+    const [session] = useSession()
+
+    console.log(session)
 
     function handleLogin() {
-        signIn("credentials",
+        try{
+            signIn("credentials",
         {
             username:email,
             password:password,
 
-            callbackUrl:`${window.location.origin}/posts`
+            callbackUrl:window.location.origin
+
+            
         })
+        }
+        catch(err){
+            alert("Erro")
+            
+            
+        }
+        
     }
 
 
@@ -52,7 +65,7 @@ export default function ModalLogin(props:ModalProps) {
                 <h1 >Login</h1>
                 <input type="text" value={email} onChange={(event) => {setEmail(event.target.value)}} placeholder="E-mail" />
                 <input type="password" value={password} onChange={(event) => {setPassword(event.target.value)}} placeholder="Senha" />
-                <button onClick={handleLogin} >Login</button>
+                <button type="button"onClick={handleLogin} >Login</button>
                 <div >
                     <p>Nao possui cadastro ainda? Clique aqui</p>
                     <button className={style['register-button']} >Cadastre-se</button>

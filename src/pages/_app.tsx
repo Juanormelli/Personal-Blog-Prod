@@ -1,16 +1,18 @@
 import {AppProps} from "next/app"
 import  Header  from "../components/Header"
 import "../styles/globals.scss"
-import {Provider as NextAuthProvider} from "next-auth/client"
+import {getSession, Provider, useSession} from 'next-auth/client'
 import React, { useState } from "react"
 import Modal from "../components/Modal"
+import { NextApiResponse } from "next"
 
 
 function MyApp({ Component, pageProps }: AppProps) {
   const [isNewLoginModalOpen, setIsNewLoginModalOpen] = useState(false)
 
-  
+ 
 
+  
     function handleOpenNewLoginModal(){
         setIsNewLoginModalOpen(true)
     }
@@ -18,14 +20,24 @@ function MyApp({ Component, pageProps }: AppProps) {
     function handleCloseNewLoginModal(){
         setIsNewLoginModalOpen(false)
     }
+    async function userSession() {
+      const session = await getSession()
+      return session
+    }
+    
+    const session = userSession()
+    pageProps.session = session
+    
 
   return (
-    <>
-      <Header onOpenLoginModal={handleOpenNewLoginModal}></Header>
-      <Component {...pageProps} />  
-      <Modal isOpen={isNewLoginModalOpen} onRequestClose={handleCloseNewLoginModal}></Modal>
-    </>
+      <Provider session={pageProps.session} >
+        <Header onOpenLoginModal={handleOpenNewLoginModal}></Header>
+        <Component {...pageProps} />  
+        <Modal isOpen={isNewLoginModalOpen} onRequestClose={handleCloseNewLoginModal}></Modal>
+      </Provider>
   )  
 }
+
+
 
 export default MyApp

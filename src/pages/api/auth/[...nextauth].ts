@@ -1,6 +1,8 @@
 import Provider from "next-auth/providers"
 import axios from "axios"; 
 import NextAuth from "next-auth";
+import { session } from "next-auth/client";
+
 
 
 
@@ -16,25 +18,50 @@ export default  NextAuth({
           },
           
           async authorize (credentials, req) {
-                console.log("Aqui 1")
-                console.log(req.body)
+                
+                
 
               const response = await axios.post('http://localhost:3335/auth',req.body)
 
-                
-                
-              if (response) {
-                console.log("Aqui 000")
-                return response.data
-              } else {
-                console.log("Aqui 2")
+              const user = response.data
 
+              //console.log(user)
+                
+              if (response.status === 200) {
+                
+                
+                return user
+              } 
+              else {
                 return null
               }
             }
-          })
-        ]
+          }),
+        ],
+        callbacks:{ 
 
-  
+           async jwt ( token, user) {
+            user && (token.user = user);
+            console.log("Aqui")
+            console.log(token)
+            return token
+        },
+    
+            async session(session, token){
+             
+               
+              session= token
 
+              console.log("Aqui")
+              console.log(session)
+              return session
+
+              
+              
+
+            }
+            
+
+                
+        }
 })
