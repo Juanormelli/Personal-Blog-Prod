@@ -25,25 +25,21 @@ export default function ModalLogin(props:ModalProps) {
     }
     const [session] = useSession()
 
-    console.log(session)
+    
 
     function handleLogin() {
-        try{
-            signIn("credentials",
+
+        const res = signIn("credentials",
         {
+            redirect:false,
+           
             username:email,
-            password:password,
+            password:password 
+            
+        }, )
 
-            callbackUrl:window.location.origin
+        
 
-            
-        })
-        }
-        catch(err){
-            alert("Erro")
-            
-            
-        }
         
     }
 
@@ -65,7 +61,7 @@ export default function ModalLogin(props:ModalProps) {
                 <h1 >Login</h1>
                 <input type="text" value={email} onChange={(event) => {setEmail(event.target.value)}} placeholder="E-mail" />
                 <input type="password" value={password} onChange={(event) => {setPassword(event.target.value)}} placeholder="Senha" />
-                <button type="button"onClick={handleLogin} >Login</button>
+                <button onClick={handleLogin} >Login</button>
                 <div >
                     <p>Nao possui cadastro ainda? Clique aqui</p>
                     <button className={style['register-button']} >Cadastre-se</button>

@@ -2,14 +2,10 @@
 import{FiX} from "react-icons/fi"
 import{GoPerson} from "react-icons/go"
 import{MdLogin} from "react-icons/md"
-
-
 import styles from "./styles.module.scss";
-
-import { useRouter } from "next/router";
 import { ActiveLink } from "../ActiveLink";
-import { useState } from "react";
 import { signOut, useSession } from "next-auth/client";
+
 
 
 interface HeaderProps{ 
@@ -22,7 +18,7 @@ export default function Header(props: HeaderProps){
     const [session] = useSession()
 
     
-    console.log(session?.user?.email)
+   
     if(session){
         return (
             <header className={styles.headerContainer}>

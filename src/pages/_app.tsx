@@ -22,6 +22,11 @@ function MyApp({ Component, pageProps }: AppProps) {
     }
     async function userSession() {
       const session = await getSession()
+      console.log(session?.user?.message)
+      if(session?.user){
+
+      }
+      
       return session
     }
     
