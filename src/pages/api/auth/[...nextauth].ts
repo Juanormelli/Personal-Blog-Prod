@@ -18,54 +18,66 @@ export default  NextAuth({
           },
           
           async authorize (credentials, req) {
-            console.log("oi")
+            
                 
-              const response = await axios.post('http://localhost:3335/auth',req.body).then((message)=>{return message}).catch((message)=> message)
-              console.log(response);
-              const user = {
-                response: response.response.status,
-                data: response.response.data,
-              }
-
-              console.log(user.data)
+              const response = await axios.post('http://localhost:3335/auth',req.body).then((message)=>{return message}).catch((message)=> {return message})
+              console.log("Aqui")
               
+              const status =  response.status
+              console.log(status)
               
-                
-              if (response) {
+              if (status !== 200) {
+                const user = {
+                  response: response.response.status,
+                  data: response.response.data.message,
+                }
                 return user
-               
-              } 
-              else {
+
+
+              } else{
+                console.log("Juan")
+                const user = {
+                  response: response.status,
+                  data: response.data,
+                }
+  
+                return user
+  
                 
-                return null
+
               }
+              
+              
+              
+                
+              
+              
+              
             }
           }),
         ],
         callbacks:{ 
 
            async jwt ( token, user) {
-            const status = user?.response
-            if(status === 400){
-              console.log("Juan")
-
-              console.log(token)
-            }
-
-            
+           
             user && (token.user = user.data);
             
             
             return token
+
+           
+
+            
+            
         },
     
             async session(session, token){
-             console.log(session)
+             
                
               session = token
 
 
-              
+              console.log(session)
               return session
 
               
@@ -73,11 +85,11 @@ export default  NextAuth({
 
             },
             async signIn(user) {
-              
-              if (user.status === 400){
+              const error = user.data
+              if (user.response != 200){
                 
                 
-                return false
+                throw new Error(String(error)) 
 
               }
               else{

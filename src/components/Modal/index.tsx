@@ -28,21 +28,30 @@ export default function ModalLogin(props:ModalProps) {
     
 
     function handleLogin() {
-
-        const res = signIn("credentials",
+     
+        
+            signIn("credentials",
         {
             redirect:false,
-           
             username:email,
             password:password 
             
-        }, )
+        }).then((message) => {if(message?.error){
+            return alert(message.error)
+        }
+        else{ 
+            props.onRequestClose()
+            return true
+        }
+    })
+
 
         
 
+        
         
     }
-
+    
 
 
     
