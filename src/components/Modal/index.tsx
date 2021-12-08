@@ -1,9 +1,10 @@
 
 import Modal from "react-modal"
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { signIn, useSession } from 'next-auth/client'
 
 import style from "../Modal/styles.module.scss"
+import { consumers } from "stream";
 
 
 interface ModalProps {
@@ -13,17 +14,18 @@ interface ModalProps {
 
 }
 
-
+let messageError=""
 
 export default function ModalLogin(props:ModalProps) {
-    const [email, setEmail] = useState("")
+    const [user, setUser] = useState("")
     const [password, setPassword] = useState("")
     
     function openModalClear(){
         setPassword("")
-        setEmail("")
+        setUser("")
+        setMessage("")
     }
-    const [session] = useSession()
+     
 
     
 
@@ -33,17 +35,22 @@ export default function ModalLogin(props:ModalProps) {
             signIn("credentials",
         {
             redirect:false,
-            username:email,
+            username:user,
             password:password 
             
         }).then((message) => {if(message?.error){
-            return alert(message.error)
+            messageError = message?.error
+            setMessage(messageError)
+            
+            
         }
         else{ 
             props.onRequestClose()
             return true
         }
     })
+
+      
 
 
         
@@ -52,34 +59,74 @@ export default function ModalLogin(props:ModalProps) {
         
     }
     
-
-
+    const [message,setMessage] = useState("")
     
 
-    return(
-   
-        <Modal 
-        isOpen={props.isOpen} 
-        onRequestClose={props.onRequestClose}
-        overlayClassName= "react-modal-overlay"
-        className= "react-modal-content"
-        onAfterClose={openModalClear}
-        >
-            <div className={style['modal-container']}>
-                <button className={style['modal-close']} type="submit" onClick={props.onRequestClose}>✖</button>
-                <h1 >Login</h1>
-                <input type="text" value={email} onChange={(event) => {setEmail(event.target.value)}} placeholder="E-mail" />
-                <input type="password" value={password} onChange={(event) => {setPassword(event.target.value)}} placeholder="Senha" />
-                <button onClick={handleLogin} >Login</button>
-                <div >
-                    <p>Nao possui cadastro ainda? Clique aqui</p>
-                    <button className={style['register-button']} >Cadastre-se</button>
-                </div>
-            </div>
+    useEffect(() => {
+    
+    }, [message]);
+
+    
+    
+    if(message !== ""){
         
-        </Modal>
+        return(
+   
+            <Modal 
+            isOpen={props.isOpen} 
+            onRequestClose={props.onRequestClose}
+            overlayClassName= "react-modal-overlay"
+            className= "react-modal-content"
+            onAfterClose={openModalClear}
+            ariaHideApp={false}
+            >
+
+                <div className={style['modal-container']}>
+                    
+                    <button className={style['modal-close']} type="submit" onClick={props.onRequestClose}>✖</button>
+                    <h1 >Login</h1>
+                    <input type="text" value={user} onChange={(event) => {setUser(event.target.value)}} placeholder="Usuario" />
+                    <input type="password" value={password} onChange={(event) => {setPassword(event.target.value)}} placeholder="Senha" />
+                    <small className={style['error']}>{messageError}</small>
+                    <button onClick={handleLogin} className={style['loginError']} >Login</button>
+                    <div >
+                        <p>Nao possui cadastro ainda? Clique aqui</p>
+                        <button className={style['register-button']} >Cadastre-se</button>
+                    </div>
+                </div>
+               
+            
+            </Modal>
+        
+        )
+    }else{
+        return(
+   
+            <Modal 
+            isOpen={props.isOpen} 
+            onRequestClose={props.onRequestClose}
+            overlayClassName= "react-modal-overlay"
+            className= "react-modal-content"
+            onAfterClose={openModalClear}
+            ariaHideApp={false}
+            >
+                <div className={style['modal-container']}>
+                    <button className={style['modal-close']} type="submit" onClick={props.onRequestClose}>✖</button>
+                    <h1 >Login</h1>
+                    <input type="text" value={user} onChange={(event) => {setUser(event.target.value)}} placeholder="Usuario" />
+                    <input type="password" value={password} onChange={(event) => {setPassword(event.target.value)}} placeholder="Senha" />
+                    <button onClick={handleLogin} >Login</button>
+                    <div >
+                        <p>Nao possui cadastro ainda? Clique aqui</p>
+                        <button className={style['register-button']} >Cadastre-se</button>
+                    </div>
+                </div>
+            
+            </Modal>
+        
+        )
+    }
     
-    )
 
 
 } 
