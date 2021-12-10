@@ -8,6 +8,7 @@ import { consumers } from "stream";
 
 
 interface ModalProps {
+    onOpenRegisterModal:() => void;
     onRequestClose : () => void;
     isOpen: boolean;
 
@@ -118,7 +119,7 @@ export default function ModalLogin(props:ModalProps) {
                     <button onClick={handleLogin} >Login</button>
                     <div >
                         <p>Nao possui cadastro ainda? Clique aqui</p>
-                        <button className={style['register-button']} >Cadastre-se</button>
+                        <button className={style['register-button']} onClick={props.onOpenRegisterModal}>Cadastre-se</button>
                     </div>
                 </div>
             

@@ -5,10 +5,12 @@ import {getSession, Provider, useSession} from 'next-auth/client'
 import React, { useState } from "react"
 import Modal from "../components/Modal"
 import { NextApiResponse } from "next"
+import RegisterModal from "../components/RegisterModal"
 
 
 function MyApp({ Component, pageProps }: AppProps) {
   const [isNewLoginModalOpen, setIsNewLoginModalOpen] = useState(false)
+  const [isNewRegisterModalOpen, setIsNewRegisterModalOpen] = useState(false)
 
  
 
@@ -20,6 +22,14 @@ function MyApp({ Component, pageProps }: AppProps) {
     function handleCloseNewLoginModal(){
         setIsNewLoginModalOpen(false)
     }
+
+    function handleOpenNewRegisterModal(){
+      setIsNewRegisterModalOpen(true)
+  }
+
+  function handleCloseNewRegisterModal(){
+      setIsNewRegisterModalOpen(false)
+  }
     async function userSession() {
       const session = await getSession()
       
@@ -35,7 +45,8 @@ function MyApp({ Component, pageProps }: AppProps) {
       <Provider session={pageProps.session} >
         <Header onOpenLoginModal={handleOpenNewLoginModal}></Header>
         <Component {...pageProps} />  
-        <Modal isOpen={isNewLoginModalOpen} onRequestClose={handleCloseNewLoginModal}></Modal>
+        <Modal isOpen={isNewLoginModalOpen} onRequestClose={handleCloseNewLoginModal} onOpenRegisterModal={handleOpenNewRegisterModal}></Modal>
+        <RegisterModal isOpen={isNewRegisterModalOpen} onRequestClose={handleCloseNewRegisterModal}></RegisterModal>
       </Provider>
   )  
 }
