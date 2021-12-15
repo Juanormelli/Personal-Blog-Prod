@@ -9,6 +9,15 @@ interface RegisterModalProps{
     isOpen:boolean
 }
 
+
+interface IRegisterUser{
+    username: string;
+    email: string;
+    password: string;
+}
+
+
+
 let testes:any
 export default function RegisterModal(props:RegisterModalProps){
 
@@ -100,11 +109,4 @@ export default function RegisterModal(props:RegisterModalProps){
 }
 
 
-
-
-interface IRegisterUser{
-    username: string;
-    email: string;
-    password: string;
-}
 
