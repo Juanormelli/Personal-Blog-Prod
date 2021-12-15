@@ -20,7 +20,10 @@ export default function Header(props: HeaderProps){
 
     const sessionCustomized:any = session?.user
 
-   
+    
+    useEffect(() => {
+
+    }, [session])
    
     if(session){
         return (

@@ -52,7 +52,7 @@ export default NextAuth({
 
     async session(session, token) {
       
-      session = token;
+      session.user = token;
      
       return session;
     },
