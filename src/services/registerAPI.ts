@@ -8,7 +8,7 @@ interface IRegisterUser{
 }
 
 export async function registerUser({email, password, username}:IRegisterUser) {
-    const response = await axios.post('http://localhost:3335/users', {email: email, password: password, username:username}).then(response => {return response}).catch(response => {return response;})
+    const response = await axios.post('http://18.231.81.185:80/users', {email: email, password: password, username:username}).then(response => {return response}).catch(response => {return response;})
     if (response.data !== undefined) {
         const responseSucess  = {
             data: "Congrats the user register sucsess",

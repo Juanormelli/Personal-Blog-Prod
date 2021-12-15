@@ -42,7 +42,7 @@ export default function RegisterModal(props:RegisterModalProps){
 
     }
     useEffect(() => {
-        console.log(message)
+        
     
     }, [message]);
 
@@ -59,7 +59,7 @@ export default function RegisterModal(props:RegisterModalProps){
                 <div className={style['modal-container']}>
                     
                     <button className={style['modal-close']} type="submit" onClick={props.onRequestClose}>✖</button>
-                    <h1 >Login</h1>
+                    <h1 >Cadastrar-se</h1>
                     <input type="text" value={user} onChange={(event) => {setUser(event.target.value)}} placeholder="Usuario" />
                     <input type="email" value={email} onChange={(event) => {setEmail(event.target.value)}} placeholder="E-mail" />
                     <input type="password" value={password} onChange={(event) => {setPassword(event.target.value)}} placeholder="Senha" />

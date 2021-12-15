@@ -13,7 +13,7 @@ export default NextAuth({
 
       async authorize(credentials, req) {
         const response = await axios
-          .post("http://localhost:3335/auth", req.body)
+          .post("http://18.231.81.185:80/auth", req.body)
           .then((message) => {
             return message;
           })
@@ -23,7 +23,7 @@ export default NextAuth({
         
 
         const status = response.status;
-        console.log(status);
+        
 
         if (status !== 200) {
           const user = {
