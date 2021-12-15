@@ -2,8 +2,7 @@ import { useEffect, useState } from "react"
 import Modal from "react-modal"
 
 import style from "./styles.module.scss"
-
-import { registerUser } from "../../services/registerAPI";
+import axios from "axios"
 
 interface RegisterModalProps{
     onRequestClose(): void;
@@ -32,6 +31,7 @@ export default function RegisterModal(props:RegisterModalProps){
         testes = await registerUser({email, password, username:user})
         if( testes.statusCode!==200){
             setMessage(testes.data)
+            console.log(message)
             
         }
         else{
@@ -45,6 +45,7 @@ export default function RegisterModal(props:RegisterModalProps){
         
     
     }, [message]);
+
 
     return (
         <Modal 
@@ -77,3 +78,33 @@ export default function RegisterModal(props:RegisterModalProps){
 }
 
 
+
+
+interface IRegisterUser{
+    username: string;
+    email: string;
+    password: string;
+}
+
+export async function registerUser({email, password, username}:IRegisterUser) {
+    const response = await axios.post('http://18.231.81.185:80/users', {email: email, password: password, username:username}).then(response => {return response}).catch(response => {return response;})
+    if (response.data !== undefined) {
+        const responseSucess  = {
+            data: "Congrats the user register sucsess",
+            statusCode: 200
+        }
+        return responseSucess
+    }
+    else {
+        const responseError = {
+            data: response.response.data.message,
+            statusCode: 400
+        }
+        return responseError
+    }
+    
+    
+
+
+
+}
