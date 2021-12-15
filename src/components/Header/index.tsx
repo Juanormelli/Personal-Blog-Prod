@@ -5,6 +5,7 @@ import{MdLogin} from "react-icons/md"
 import styles from "./styles.module.scss";
 import { ActiveLink } from "../ActiveLink";
 import { signOut, useSession } from "next-auth/client";
+import { useEffect } from "react";
 
 
 
@@ -12,12 +13,17 @@ interface HeaderProps{
     onOpenLoginModal: () => void;
 }
 
-
 export default function Header(props: HeaderProps){
     
     const [session] = useSession()
+    
+
+    const sessionCustomized:any = session?.user
 
     
+    useEffect(() => {
+
+    }, [session])
    
     if(session){
         return (
@@ -36,7 +42,7 @@ export default function Header(props: HeaderProps){
                     
                     <button className={styles.signinButton}onClick={()=>signOut()}>
                     <GoPerson color ="#04d361"/>
-                    {session.user?.username}
+                    {sessionCustomized?.user?.username}
                     <FiX color="#737380" className={styles.closeIcon}/>
                     </button>
                     

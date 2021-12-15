@@ -46,13 +46,14 @@ export default NextAuth({
   callbacks: {
     async jwt(token, user) {
       user && (token.user = user.data);
-
+  
       return token;
     },
 
     async session(session, token) {
+      
       session = token;
-
+     
       return session;
     },
     async signIn(user) {
