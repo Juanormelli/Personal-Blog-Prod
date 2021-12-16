@@ -62,7 +62,7 @@ export default function RegisterModal(props:RegisterModalProps){
    const [message, setMessage] = useState("")
    if(passwordConf !== password && message !== "As Senhas sao diferentes"){
     setMessage("As Senhas sao diferentes")
-    }else if(passwordConf === password && message!==""){
+    }else if(passwordConf === password && message==="As Senhas sao diferentes" ){
         setMessage("")
     }
    
