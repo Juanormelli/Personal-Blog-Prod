@@ -1,5 +1,4 @@
 
-
 .headerContainer{
     height:5rem;
     border-bottom: 1px solid var(--gray-700);
@@ -11,18 +10,21 @@
     max-width: 1120px;
     height:5rem;
     margin: 0 auto;
-    padding: 0 2rem;
+    padding: 0 0.5rem;
 
 
     display: flex;
     align-items: center;
 
-
+    img{
+        width:6rem
+    }
     nav{
-        margin-left: 5rem;
+        margin-left: auto;
         height:5rem;
 
         a{
+            
             display: inline-block;
             position: relative;
             padding:0 0.5rem;
@@ -36,7 +38,7 @@
                 color: var(--white)
             }
             &+a{
-                margin-left:2rem;
+                margin-left:auto;
             }
 
             &.active{
@@ -65,6 +67,7 @@
     .signinButton{
         height:3rem;
         border-radius:3rem;
+        max-width:12rem;
     
         background: var(--gray-750);
     
@@ -84,17 +87,17 @@
         font-weight:bold;
     
         svg{
-            height:20px;
-            width: 20px;
+            height:1rem;
+            width: 1rem;
     
             
         }
         svg:first-child{
-            margin-right: 1rem;
+            margin-right: .5rem;
         }
     
         svg.closeIcon{
-            margin-left:1rem;
+            margin-left:.5rem;
         }
     
         transition:filter .2s;
