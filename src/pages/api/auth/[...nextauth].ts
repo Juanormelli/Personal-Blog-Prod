@@ -13,7 +13,7 @@ export default NextAuth({
 
       async authorize(credentials, req) {
         const response = await axios
-          .post("http://18.231.81.185:80/auth", req.body)
+          .post("https://deploy.techposts.com.br/auth", req.body)
           .then((message) => {
             return message;
           })
