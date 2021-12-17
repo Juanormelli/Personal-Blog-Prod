@@ -1,8 +1,9 @@
 
 .headerContainer{
     height:5rem;
-    border-bottom: 1px solid var(--gray-700);
-
+    border-bottom: 1px solid black ;
+    
+    
     
 }
 
@@ -69,7 +70,7 @@
         border-radius:3rem;
         max-width:12rem;
     
-        background: var(--gray-750);
+        background: #333644;
     
         border:0;
     
@@ -103,7 +104,7 @@
         transition:filter .2s;
     
         &:hover{
-            filter: brightness(0.8);
+            filter: brightness(0.9);
         }
     
     
