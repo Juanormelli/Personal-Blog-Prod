@@ -30,15 +30,15 @@ function MyApp({ Component, pageProps }: AppProps) {
   function handleCloseNewRegisterModal(){
       setIsNewRegisterModalOpen(false)
   }
-    async function userSession() {
-      const session = await getSession()
+  async function userSession() {
+    const session = await getSession()
       
       
       return session
-    }
+  }
     
-    const session = userSession()
-    pageProps.session = session
+  const session = userSession()
+  pageProps.session = session
     
 
   return (
