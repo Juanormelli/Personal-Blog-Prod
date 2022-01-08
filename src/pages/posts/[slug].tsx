@@ -26,6 +26,7 @@ export default function Posts({post}: PostsProps){
         <>
             <Head>
                 <title>{post.title} | TECH POSTS</title>
+                <meta name="image" property="og:image" content={post.image.url} />
 
             </Head>
 
